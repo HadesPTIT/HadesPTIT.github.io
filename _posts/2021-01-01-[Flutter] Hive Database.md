@@ -1,3 +1,13 @@
+---
+title: "[Flutter] Hive Database"
+date: 2020-02-02 21:15:03 +0700
+categories: [Flutter]
+tags: [dart, flutter, database]
+---
+
+Hive là một lightweight database xây dựng theo dạng key-value được viết bằng Dart thuần túy. 
+Lấy cảm hứng từ [Bitcask](https://en.wikipedia.org/wiki/Bitcask)
+
 ## Introduction
 
 https://docs.hivedb.dev/
