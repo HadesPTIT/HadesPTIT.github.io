@@ -14,9 +14,6 @@ lang: en-US
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
 # timezone: Asia/Ho_Chi_Minh
 
-# jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
-# ↓ --------------------------
-
 title: Hades                          # the main title
 
 tagline: Chase excellence success will follow you
