@@ -1,0 +1,157 @@
+<!doctype html><html lang="en-US" data-mode="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover" ><meta name="generator" content="Jekyll v4.4.1" /><meta property="og:title" content="[Flutter] Hive Database" /><meta property="og:locale" content="en_US" /><meta name="description" content="Hive là một lightweight database xây dựng theo dạng key-value được viết bằng Dart thuần túy. Lấy cảm hứng từ Bitcask" /><meta property="og:description" content="Hive là một lightweight database xây dựng theo dạng key-value được viết bằng Dart thuần túy. Lấy cảm hứng từ Bitcask" /><link rel="canonical" href="https://hadesptit.github.io/posts/Flutter-Hive-Database/" /><meta property="og:url" content="https://hadesptit.github.io/posts/Flutter-Hive-Database/" /><meta property="og:site_name" content="Hades" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2020-08-15T14:15:03+00:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="[Flutter] Hive Database" /><meta name="twitter:site" content="@hades_pt" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-08-15T14:15:03+00:00","datePublished":"2020-08-15T14:15:03+00:00","description":"Hive là một lightweight database xây dựng theo dạng key-value được viết bằng Dart thuần túy. Lấy cảm hứng từ Bitcask","headline":"[Flutter] Hive Database","mainEntityOfPage":{"@type":"WebPage","@id":"https://hadesptit.github.io/posts/Flutter-Hive-Database/"},"url":"https://hadesptit.github.io/posts/Flutter-Hive-Database/"}</script><title>[Flutter] Hive Database | Hades</title><link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/svg+xml" href="/assets/img/favicons/favicon.svg"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.36.4/dist/tocbot.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css"> <script src="/assets/js/dist/theme.min.js"></script> <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.18/dayjs.min.js,npm/dayjs@1.11.18/locale/en.js,npm/dayjs@1.11.18/plugin/relativeTime.js,npm/dayjs@1.11.18/plugin/localizedFormat.js,npm/tocbot@4.36.4/dist/tocbot.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script><body><aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end"><header class="profile-wrapper"> <a href="/" id="avatar" class="rounded-circle"><img src="https://avatars.githubusercontent.com/u/20601191?s=400" width="112" height="112" alt="avatar" onerror="this.style.display='none'"></a> <a class="site-title d-block" href="/">Hades</a><p class="site-subtitle fst-italic mb-0">Chase excellence success will follow you</p></header><nav class="flex-column flex-grow-1 w-100 ps-0"><ul class="nav"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tags"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info"></i> <span>ABOUT</span> </a></ul></nav><div class="sidebar-bottom d-flex flex-wrap align-items-center w-100"> <a href="https://github.com/HadesPTIT" aria-label="github" target="_blank" rel="noopener noreferrer" > <i class="fab fa-github-alt"></i> </a> <a href="https://twitter.com/hades_pt" aria-label="twitter" target="_blank" rel="noopener noreferrer" > <i class="fab fa-twitter"></i> </a> <a href="javascript:location.href = 'mailto:' + ['Hphamptit','gmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a></div></aside><div id="main-wrapper" class="d-flex justify-content-center"><div class="container d-flex flex-column px-xxl-5"><header id="topbar-wrapper" class="flex-shrink-0" aria-label="Top Bar"><div id="topbar" class="d-flex align-items-center justify-content-between px-lg-3 h-100" ><nav id="breadcrumb" aria-label="Breadcrumb"> <span> <a href="/">Home</a> </span> <span>[Flutter] Hive Database</span></nav><button type="button" id="sidebar-trigger" class="btn btn-link" aria-label="Sidebar"> <i class="fas fa-bars fa-fw"></i> </button><div id="topbar-title"> Post</div><button type="button" id="search-trigger" class="btn btn-link" aria-label="Search"> <i class="fas fa-search fa-fw"></i> </button> <search id="search" class="align-items-center ms-3 ms-lg-0"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..." > </search> <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">Cancel</button></div></header><div class="row flex-grow-1"><main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4"><article class="px-1" data-toc="true"><header><h1 data-toc-skip>[Flutter] Hive Database</h1><div class="post-meta text-muted"> <span> Posted <time data-ts="1597500903" data-df="ll" data-bs-toggle="tooltip" data-bs-placement="bottom" > Aug 15, 2020 </time> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://github.com/HadesPTIT">Hades</a> </em> </span><div> <span class="readtime" data-bs-toggle="tooltip" data-bs-placement="bottom" title="850 words" > <em>4 min</em> read</span></div></div></div></header><div id="toc-bar" class="d-flex align-items-center justify-content-between invisible"> <span class="label text-truncate">[Flutter] Hive Database</span> <button type="button" class="toc-trigger btn me-1"> <i class="fa-solid fa-list-ul fa-fw"></i> </button></div><button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm"> <span class="label ps-2 pe-1">Contents</span> <i class="fa-solid fa-angle-right fa-fw"></i> </button> <dialog id="toc-popup" class="p-0"><div class="header d-flex flex-row align-items-center justify-content-between"><div class="label text-truncate py-2 ms-4">[Flutter] Hive Database</div><button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75"> <i class="fas fa-close"></i> </button></div><div id="toc-popup-content" class="px-4 py-3 pb-4"></div></dialog><div class="content"><p>Hive là một lightweight database xây dựng theo dạng key-value được viết bằng Dart thuần túy. Lấy cảm hứng từ <a href="https://en.wikipedia.org/wiki/Bitcask">Bitcask</a></p><h2 id="introduction"><span class="me-2">Introduction</span><a href="#introduction" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>https://docs.hivedb.dev/</p><ul><li>Hive là một cơ sở dữ liệu NoSQL đảm bảo đúng tiêu chí nhanh, gọn, nhẹ.<li>Hive thực sự hữu ích nếu bạn bạn cần 1 CSDL dưới dạng key-value, ko có nhiều relationship và dễ dùng.<li>Hive lấy ý tưởng từ các hộp ( box - nơi chưa dữ liệu ) - mở ra trước khi sử dụng .<li>Hive đã hỗ trợ lazy-loading và encrypt.</ul><p>Trong phần I này, mình sẽ giới thiệu cơ bản về Hive và cách sử dụng nó.</p><p>Docs dựa trên Hive phiên bản sau:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre>dependencies:
+  hive: ^1.4.4+1
+  hive_flutter: ^0.3.1
+
+dev_dependencies:
+  hive_generator: ^0.8.2
+  build_runner: ^1.11.1
+</pre></table></code></div></div><h2 id="what-are-boxes-"><span class="me-2">What are boxes ?</span><a href="#what-are-boxes-" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ul><li>Tất cả data được lưu trong Hive được tổ chức theo các hộp (box).<li>Một box có thể được coi như 1 table trong SQL nhưng không có cấu trúc và có thể chứa mọi thứ.</ul><h2 id="open-box-"><span class="me-2">Open box ?</span><a href="#open-box-" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Để sử dụng được box, bạn cần mở nó trước.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>var box = await Hive.openBox&lt;E&gt;('testBox');
+</pre></table></code></div></div><p>Nếu <code class="language-plaintext highlighter-rouge">box</code> đã được mở, nó sẽ return ngay và các params truyền vào sẽ bị ignore. Khi có được instance của box, bạn có thể đọc, ghi, xoá, sửa…</p><h2 id="get-open-box-"><span class="me-2">Get open box ?</span><a href="#get-open-box-" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Hive lưu trữ 1 tham chiếu đến các box đã được mở. Nếu muốn mở một box đã được mở rồi :</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>var box = Hive.box('myBox');
+</pre></table></code></div></div><p>Phương thức này rất hữu ích bởi bạn sẽ ko cần phải truyền qua lại box giữa các widgets.</p><h2 id="close-box-"><span class="me-2">Close box ?</span><a href="#close-box-" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Nếu bạn ko cần sử dụng đến box nữa, hãy close nó. Tất cả key &amp; value được lưu trong cache sẽ được xoá khỏi bộ nhớ.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>var box = await Hive.openBox('myBox');
+await box.put('hello', 'world');
+await box.close();
+</pre></table></code></div></div><p><strong>Note</strong>: Trước khi đóng ứng dụng, bạn nên gọi <code class="language-plaintext highlighter-rouge">Hive.close()</code> để đóng toàn bộ các box lại.</p><h2 id="type-parameter-box"><span class="me-2">Type parameter: Box<E></E></span><a href="#type-parameter-box" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Khi gọi openBox, bạn có thể chỉ định rằng nó chỉ có thể chứa giá trị của 1 loại cụ thể.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>var box = await Hive.openBox&lt;User&gt;('users');
+
+box.add(User());
+
+box.add(5); // Compile time error
+</pre></table></code></div></div><p><strong>Note</strong>:</p><ul><li>Box này có thể chứa subtype của User.<li>Bạn cần cung cấp cùng kiểu params trong Hive.box(). Bạn ko thể mở cùng một box với các tham số kiểu khác nhau.</ul><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre>await Hive.openBox&lt;User&gt;('users');
+
+Hive.box&lt;User&gt;('users'); // OK
+
+Hive.box('users'); // ERROR
+Hive.box&lt;Dog&gt;('users'); // ERROR
+</pre></table></code></div></div><h2 id="reading--writing-"><span class="me-2">Reading &amp; Writing ?</span><a href="#reading--writing-" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><h3 id="reading"><span class="me-2">Reading</span><a href="#reading" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Việc đọc từ box rất đơn giản :</ul><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>var box = Hive.box('myBox');
+
+String name = box.get('name');
+
+DateTime birthday = box.get('birthday');
+</pre></table></code></div></div><p>Nếu như key không tồn tại, sẽ return <code class="language-plaintext highlighter-rouge">null</code>. Tuy nhiên, bạn cũng có thể set <code class="language-plaintext highlighter-rouge">defaultValue</code> trong trường hợp key không tồn tại.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>double height = box.get('randomKey', defaultValue: 17.5);
+</pre></table></code></div></div><p>Các list trả về bởi get() mặc định có dạng List<dynamic>. Sử dụng list.cast<SomeType>() để cast về kiểu cần dùng.</SomeType></dynamic></p><h2 id="every-object-only-exists-once"><span class="me-2">Every object only exists once</span><a href="#every-object-only-exists-once" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Bạn sẽ luôn nhận được cùng 1 instance của một đối tượng với 1 key cụ thể.</p><h2 id="writing"><span class="me-2">Writing</span><a href="#writing" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Việc ghi vào box gần giống như map. Tất cả các key phải là chuỗi string ASCII tối đa 255 kí tự hoặc số nguyên 32bit unsigned.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>var box = Hive.box('myBox');
+
+box.put('name', 'Paul');
+
+box.put('friends', ['Dave', 'Simon', 'Lisa']);
+
+box.put(123, 'test');
+
+box.putAll({'key1': 'value1', 42: 'life'});
+</pre></table></code></div></div><p>Bạn có thắc mắc tại sao việc write lại ko <code class="language-plaintext highlighter-rouge">async</code> ? Đây là 1 trong những điểm mạnh chính của Hive.</p><p>Các thay đổi được ghi vào disk dưới background nhưng tất cả listener sẽ được thông báo ngay lập tức.</p><p>Nếu bạn muốn đảm bảo quá trình write thành công, chỉ cần await nó bởi Future.</p><p>=&gt; Điều này khác với <code class="language-plaintext highlighter-rouge">lazyboxes</code> ở chỗ : nếu <code class="language-plaintext highlighter-rouge">Future</code> được trả về bởi function <code class="language-plaintext highlighter-rouge">put()</code> chưa hoàn thành thì khi gọi <code class="language-plaintext highlighter-rouge">get()</code> sẽ trả về giá trị cũ ( or null nếu chưa tồn tại).</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre>var box = await Hive.openBox('box');
+
+box.put('key', 'value');
+print(box.get('key')); // value
+
+var lazyBox = await Hive.openLazyBox('lazyBox');
+
+var future = lazyBox.put('key', 'value');
+print(lazyBox.get('key')); // null
+
+await future;
+print(lazyBox.get('key')); // value
+</pre></table></code></div></div><h2 id="delete"><span class="me-2">Delete</span><a href="#delete" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Nếu bạn muốn xoá, xử dụng delete()</p><p><strong>Note</strong>: write <code class="language-plaintext highlighter-rouge">null</code> khác vơi delete();</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>var box = await Hive.openBox('writeNullBox');
+
+  box.put('key', 'value');
+
+  box.put('key', null);
+  print(box.containsKey('key')); // TRUE
+
+  box.delete('key');
+  print(box.containsKey('key')); // FALSE
+</pre></table></code></div></div><h2 id="auto-increment--indices"><span class="me-2">Auto increment &amp; indices</span><a href="#auto-increment--indices" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Hive hỗ trợ tự động tăng key =&gt; Điều này rất hữu ích để truy cập nhiều đối tượng, bạn có thể sử dụng box như một list.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre><td class="rouge-code"><pre>  var friends = await Hive.openBox('friends');
+  friends.clear();
+
+  friends.add('Lisa');            // index 0, key 0
+  friends.add('Dave');            // index 1, key 1
+  friends.put(123, 'Marco');      // index 2, key 123
+  friends.add('Paul');            // index 3, key 124
+
+  print(friends.getAt(0));
+  print(friends.get(0));
+  
+  print(friends.getAt(1));
+  print(friends.get(1));
+  
+  print(friends.getAt(2));
+  print(friends.get(123));
+  
+  print(friends.getAt(3));
+  print(friends.get(124));
+</pre></table></code></div></div><h2 id="conclusion"><span class="me-2">Conclusion</span><a href="#conclusion" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Chúc các bạn coding vui vẻ :D</p><h2 id="references"><span class="me-2">References</span><a href="#references" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ul><li><a href="https://docs.hivedb.dev/#/">Hive Docs</a></ul></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw me-1"></i> <a href="/categories/flutter/">Flutter</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw me-1"></i> <a href="/tags/dart/" class="post-tag no-text-decoration" >dart</a> <a href="/tags/flutter/" class="post-tag no-text-decoration" >flutter</a> <a href="/tags/database/" class="post-tag no-text-decoration" >database</a></div><div class=" post-tail-bottom d-flex justify-content-between align-items-center mt-5 pb-2 " ><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper d-flex align-items-center"> <span class="share-label text-muted">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=[Flutter]%20Hive%20Database%20-%20Hades&url=https%3A%2F%2Fhadesptit.github.io%2Fposts%2FFlutter-Hive-Database%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=[Flutter]%20Hive%20Database%20-%20Hades&u=https%3A%2F%2Fhadesptit.github.io%2Fposts%2FFlutter-Hive-Database%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://telegram.me/share?text=[Flutter]%20Hive%20Database%20-%20Hades&url=https%3A%2F%2Fhadesptit.github.io%2Fposts%2FFlutter-Hive-Database%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fhadesptit.github.io%2Fposts%2FFlutter-Hive-Database%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Linkedin" aria-label="Linkedin"> <i class="fa-fw fab fa-linkedin"></i> </a> <button id="copy-link" aria-label="Copy link" class="btn small" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy link" data-title-succeed="Link copied successfully!" > <i class="fa-fw fas fa-link pe-none fs-6"></i> </button> </span></div></div></div></article></main><aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted"><div class="access"><section id="access-lastmod"><h2 class="panel-heading">Recent Update</h2><ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2"><li class="text-truncate lh-lg"> <a href="/posts/flutter-338/">[Flutter] Flutter 3.38 & Dart 3.10 có gì mới ?</a><li class="text-truncate lh-lg"> <a href="/posts/flutter-33/">[Flutter] Flutter 3.3 có gì mới ?</a><li class="text-truncate lh-lg"> <a href="/posts/what-news-in-flutter3/">[Flutter] Flutter 3.0 có gì mới ?</a><li class="text-truncate lh-lg"> <a href="/posts/flutter-2.8/">[Flutter] Flutter 2.8 có gì mới ?</a><li class="text-truncate lh-lg"> <a href="/posts/shrinkwrap-vs-slivers/">[Flutter] ShrinkWrap vs Slivers | Decoding Flutter</a></ul></section><section><h2 class="panel-heading">Trending Tags</h2><div class="d-flex flex-wrap mt-3 mb-1 me-3"> <a class="post-tag btn btn-outline-primary" href="/tags/android/">android</a> <a class="post-tag btn btn-outline-primary" href="/tags/flutter/">flutter</a> <a class="post-tag btn btn-outline-primary" href="/tags/dart/">dart</a> <a class="post-tag btn btn-outline-primary" href="/tags/rxjava/">rxjava</a> <a class="post-tag btn btn-outline-primary" href="/tags/kotlin/">kotlin</a> <a class="post-tag btn btn-outline-primary" href="/tags/new/">new</a> <a class="post-tag btn btn-outline-primary" href="/tags/performance/">performance</a> <a class="post-tag btn btn-outline-primary" href="/tags/android-studio/">android studio</a> <a class="post-tag btn btn-outline-primary" href="/tags/as/">as</a> <a class="post-tag btn btn-outline-primary" href="/tags/cicd/">cicd</a></div></section></div><div class="toc-border-cover z-3"></div><section id="toc-wrapper" class="invisible position-sticky ps-0 pe-4 pb-4"><h2 class="panel-heading ps-3 pb-2 mb-0">Contents</h2><nav id="toc"></nav></section></aside></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4"><aside id="related-posts" aria-labelledby="related-label"><h3 class="mb-4" id="related-label">Further Reading</h3><nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4"><article class="col"> <a href="/posts/what-news-in-flutter3/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1654092903" data-df="ll" > Jun 1, 2022 </time><h4 class="pt-0 my-2">[Flutter] Flutter 3.0 có gì mới ?</h4><div class="text-muted"><p>Giới thiệu 11/05/2022, Google I/O chính thức phát hành phiên bản Flutter 3 với rất nhiều cải tiến đáng kể. Đặc biệt dành cho các thiết bị sử dụng window. Trong bài viết này mình sẽ cùng tìm hiểu x...</p></div></div></a></article><article class="col"> <a href="/posts/shrinkwrap-vs-slivers/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1637417703" data-df="ll" > Nov 20, 2021 </time><h4 class="pt-0 my-2">[Flutter] ShrinkWrap vs Slivers | Decoding Flutter</h4><div class="text-muted"><p>Introduction Một trong những widget cơ bản mà các developer sử dụng thường xuyên đó là ListView. ListView rất dễ dùng, nhưng để tối ưu nó thì không hẳn ai cũng biết. Trong bài viết này, mình sẽ c...</p></div></div></a></article><article class="col"> <a href="/posts/flutter-2.0.5-news/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1631974503" data-df="ll" > Sep 18, 2021 </time><h4 class="pt-0 my-2">[Flutter] Flutter 2.5 có gì mới</h4><div class="text-muted"><p>Giới thiệu Google, gã khổng lồ tìm kiếm mới đây vừa tung ra phiên bản release 2.5 với 4600 closed issues và 3932 merged PRs. Đi kèm với nó, Dart 2.14 cũng được release cùng thời điểm. Trong bài vi...</p></div></div></a></article></nav></aside><nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation"> <a href="/posts/dart-extension-method/" class="btn btn-outline-primary" aria-label="Older" ><p>[Flutter] Dart Extension Methods</p></a> <a href="/posts/stateful-lifecycle/" class="btn btn-outline-primary" aria-label="Newer" ><p>[Flutter] StatefulWidget Lifecycle</p></a></nav><footer aria-label="Site Info" class=" d-flex flex-column justify-content-center text-muted flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3 " ><p>© <time>2025</time> <a href="https://github.com/HadesPTIT">Hades</a>. <span data-bs-toggle="tooltip" data-bs-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author." >Some rights reserved.</span></p><p>Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a data-bs-toggle="tooltip" data-bs-placement="top" title="v7.4.1" href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener" >Chirpy</a> theme.</p></footer></div></div><div id="search-result-wrapper" class="d-flex justify-content-center d-none"><div class="col-11 content"><div id="search-hints"><section><h2 class="panel-heading">Trending Tags</h2><div class="d-flex flex-wrap mt-3 mb-1 me-3"> <a class="post-tag btn btn-outline-primary" href="/tags/android/">android</a> <a class="post-tag btn btn-outline-primary" href="/tags/flutter/">flutter</a> <a class="post-tag btn btn-outline-primary" href="/tags/dart/">dart</a> <a class="post-tag btn btn-outline-primary" href="/tags/rxjava/">rxjava</a> <a class="post-tag btn btn-outline-primary" href="/tags/kotlin/">kotlin</a> <a class="post-tag btn btn-outline-primary" href="/tags/new/">new</a> <a class="post-tag btn btn-outline-primary" href="/tags/performance/">performance</a> <a class="post-tag btn btn-outline-primary" href="/tags/android-studio/">android studio</a> <a class="post-tag btn btn-outline-primary" href="/tags/as/">as</a> <a class="post-tag btn btn-outline-primary" href="/tags/cicd/">cicd</a></div></section></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><aside aria-label="Scroll to Top"> <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow"> <i class="fas fa-angle-up"></i> </button></aside></div><div id="mask" class="d-none position-fixed w-100 h-100 z-1"></div><script> document.addEventListener('DOMContentLoaded', () => { SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<article class="px-1 px-sm-2 px-lg-4 px-xl-0"><header><h2><a href="{url}">{title}</a></h2><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div></header><p>{content}</p></article>', noResultsText: '<p class="mt-5">Oops! No results found.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); }); </script>

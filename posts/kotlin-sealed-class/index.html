@@ -1,0 +1,243 @@
+<!doctype html><html lang="en-US" data-mode="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover" ><meta name="generator" content="Jekyll v4.4.1" /><meta property="og:title" content="[Android] Kotlin Sealed Class" /><meta property="og:locale" content="en_US" /><meta name="description" content="Introduction" /><meta property="og:description" content="Introduction" /><link rel="canonical" href="https://hadesptit.github.io/posts/kotlin-sealed-class/" /><meta property="og:url" content="https://hadesptit.github.io/posts/kotlin-sealed-class/" /><meta property="og:site_name" content="Hades" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2019-01-23T14:15:03+00:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="[Android] Kotlin Sealed Class" /><meta name="twitter:site" content="@hades_pt" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2019-01-23T14:15:03+00:00","datePublished":"2019-01-23T14:15:03+00:00","description":"Introduction","headline":"[Android] Kotlin Sealed Class","mainEntityOfPage":{"@type":"WebPage","@id":"https://hadesptit.github.io/posts/kotlin-sealed-class/"},"url":"https://hadesptit.github.io/posts/kotlin-sealed-class/"}</script><title>[Android] Kotlin Sealed Class | Hades</title><link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/svg+xml" href="/assets/img/favicons/favicon.svg"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.36.4/dist/tocbot.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css"> <script src="/assets/js/dist/theme.min.js"></script> <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.18/dayjs.min.js,npm/dayjs@1.11.18/locale/en.js,npm/dayjs@1.11.18/plugin/relativeTime.js,npm/dayjs@1.11.18/plugin/localizedFormat.js,npm/tocbot@4.36.4/dist/tocbot.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script><body><aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end"><header class="profile-wrapper"> <a href="/" id="avatar" class="rounded-circle"><img src="https://avatars.githubusercontent.com/u/20601191?s=400" width="112" height="112" alt="avatar" onerror="this.style.display='none'"></a> <a class="site-title d-block" href="/">Hades</a><p class="site-subtitle fst-italic mb-0">Chase excellence success will follow you</p></header><nav class="flex-column flex-grow-1 w-100 ps-0"><ul class="nav"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tags"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info"></i> <span>ABOUT</span> </a></ul></nav><div class="sidebar-bottom d-flex flex-wrap align-items-center w-100"> <a href="https://github.com/HadesPTIT" aria-label="github" target="_blank" rel="noopener noreferrer" > <i class="fab fa-github-alt"></i> </a> <a href="https://twitter.com/hades_pt" aria-label="twitter" target="_blank" rel="noopener noreferrer" > <i class="fab fa-twitter"></i> </a> <a href="javascript:location.href = 'mailto:' + ['Hphamptit','gmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a></div></aside><div id="main-wrapper" class="d-flex justify-content-center"><div class="container d-flex flex-column px-xxl-5"><header id="topbar-wrapper" class="flex-shrink-0" aria-label="Top Bar"><div id="topbar" class="d-flex align-items-center justify-content-between px-lg-3 h-100" ><nav id="breadcrumb" aria-label="Breadcrumb"> <span> <a href="/">Home</a> </span> <span>[Android] Kotlin Sealed Class</span></nav><button type="button" id="sidebar-trigger" class="btn btn-link" aria-label="Sidebar"> <i class="fas fa-bars fa-fw"></i> </button><div id="topbar-title"> Post</div><button type="button" id="search-trigger" class="btn btn-link" aria-label="Search"> <i class="fas fa-search fa-fw"></i> </button> <search id="search" class="align-items-center ms-3 ms-lg-0"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..." > </search> <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">Cancel</button></div></header><div class="row flex-grow-1"><main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4"><article class="px-1" data-toc="true"><header><h1 data-toc-skip>[Android] Kotlin Sealed Class</h1><div class="post-meta text-muted"> <span> Posted <time data-ts="1548252903" data-df="ll" data-bs-toggle="tooltip" data-bs-placement="bottom" > Jan 23, 2019 </time> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://github.com/HadesPTIT">Hades</a> </em> </span><div> <span class="readtime" data-bs-toggle="tooltip" data-bs-placement="bottom" title="913 words" > <em>5 min</em> read</span></div></div></div></header><div id="toc-bar" class="d-flex align-items-center justify-content-between invisible"> <span class="label text-truncate">[Android] Kotlin Sealed Class</span> <button type="button" class="toc-trigger btn me-1"> <i class="fa-solid fa-list-ul fa-fw"></i> </button></div><button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm"> <span class="label ps-2 pe-1">Contents</span> <i class="fa-solid fa-angle-right fa-fw"></i> </button> <dialog id="toc-popup" class="p-0"><div class="header d-flex flex-row align-items-center justify-content-between"><div class="label text-truncate py-2 ms-4">[Android] Kotlin Sealed Class</div><button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75"> <i class="fas fa-close"></i> </button></div><div id="toc-popup-content" class="px-4 py-3 pb-4"></div></dialog><div class="content"><h3 id="introduction"><span class="me-2">Introduction</span><a href="#introduction" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><code class="language-plaintext highlighter-rouge">Sealed class</code> được dùng để đại diện cho các class phân cấp bị hạn chế. Trong đó một giá trị chỉ có thể có một kiểu từ một tập có giới hạn và không thể có bất kì loại nào khác. Về mặt nào đó, <code class="language-plaintext highlighter-rouge">sealed class</code> là một phần mở rộng của <code class="language-plaintext highlighter-rouge">enum class</code> chỉ khác ở chỗ mỗi <code class="language-plaintext highlighter-rouge">enum</code> constant chỉ có một instance trong khi mỗi subclass của <code class="language-plaintext highlighter-rouge">sealed class</code> có thể có nhiều instance như một class thường vì vậy có thể chứa state trong các class này.</p><p>Giờ hãy cùng tìm hiểu cách implement một <code class="language-plaintext highlighter-rouge">sealed class</code> như thế nào nhé ;D</p><h3 id="implementing-kotlin-sealed-classes"><span class="me-2">Implementing Kotlin sealed classes</span><a href="#implementing-kotlin-sealed-classes" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Để khai báo một sealed class, Bạn cần thêm modifier <strong>sealed</strong> trước tên của class.</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="n">sealed</span> <span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
+    <span class="kd">class</span> <span class="nc">B</span> <span class="o">:</span> <span class="no">A</span><span class="o">()</span>
+    <span class="kd">class</span> <span class="nc">C</span> <span class="o">:</span> <span class="no">A</span><span class="o">()</span>
+<span class="o">}</span>
+</pre></table></code></div></div><p>Một sealed class là <strong>abstract</strong> và không thể được khởi tạo. Ví dụ :</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="n">fun</span> <span class="nf">main</span><span class="o">(</span><span class="nl">args:</span> <span class="nc">Array</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;)</span> 
+<span class="o">{</span>
+    <span class="kt">var</span> <span class="n">a</span> <span class="o">=</span> <span class="no">A</span><span class="o">()</span> <span class="c1">//compiler error. Class A cannot be instantiated.</span>
+<span class="o">}</span>
+</pre></table></code></div></div><p>Mặc định, các constructors của <code class="language-plaintext highlighter-rouge">sealed class</code> có modifier là <code class="language-plaintext highlighter-rouge">private</code>.</p><p>Tất cả các subclass của sealed class phải được khai báo trong cùng một file.</p><p>Sealed class rất quan trọng trong việc đảm bảo <code class="language-plaintext highlighter-rouge">type safety</code> bằng cách hạn chế tập các kiểu chỉ định tại thời điểm biên dịch (compile-time).</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre><td class="rouge-code"><pre>
+<span class="n">sealed</span> <span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
+
+    <span class="kd">class</span> <span class="nc">B</span> <span class="o">:</span> <span class="no">A</span><span class="o">()</span>
+
+    <span class="kd">class</span> <span class="nc">C</span> <span class="o">:</span> <span class="no">A</span><span class="o">()</span> 
+    <span class="o">{</span>
+        <span class="kd">class</span> <span class="nc">E</span> <span class="o">:</span> <span class="no">A</span><span class="o">()</span> <span class="c1">//this works.</span>
+    <span class="o">}</span>
+
+    <span class="n">init</span> <span class="o">{</span>
+        <span class="n">println</span><span class="o">(</span><span class="s">"Sealed class A"</span><span class="o">)</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">D</span> <span class="o">:</span> <span class="no">A</span><span class="o">()</span> <span class="c1">//this works</span>
+<span class="o">{</span>
+    <span class="kd">class</span> <span class="nc">F</span><span class="o">:</span> <span class="no">A</span><span class="o">()</span> <span class="c1">//This won't work. Since sealed class is defined in another scope.</span>
+<span class="o">}</span>
+</pre></table></code></div></div><p><strong>Sealed class constructors</strong></p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="n">sealed</span> <span class="kd">class</span> <span class="nf">A</span><span class="o">(</span><span class="kt">var</span> <span class="nl">name:</span> <span class="nc">String</span><span class="o">){</span>
+    
+    <span class="kd">class</span> <span class="nc">B</span> <span class="o">:</span> <span class="no">A</span><span class="o">(</span><span class="s">"B"</span><span class="o">)</span>
+    
+    <span class="kd">class</span> <span class="nc">C</span> <span class="o">:</span> <span class="no">A</span><span class="o">(</span><span class="s">"C"</span><span class="o">)</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">D</span> <span class="o">:</span> <span class="no">A</span><span class="o">(</span><span class="s">"D"</span><span class="o">)</span>
+</pre></table></code></div></div><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="n">fun</span> <span class="nf">main</span><span class="o">(</span><span class="nl">args:</span> <span class="nc">Array</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;)</span> <span class="o">{</span>
+    
+    <span class="kt">var</span> <span class="n">b</span> <span class="o">=</span> <span class="no">A</span><span class="o">.</span><span class="na">B</span><span class="o">()</span>
+    <span class="kt">var</span> <span class="n">d</span> <span class="o">=</span> <span class="no">D</span><span class="o">()</span>
+<span class="o">}</span>
+</pre></table></code></div></div><p><strong>Data class &amp; object in sealed class</strong></p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre>
+<span class="n">sealed</span> <span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
+
+    <span class="kd">class</span> <span class="nc">B</span> <span class="o">:</span> <span class="no">A</span><span class="o">()</span>
+    
+    <span class="kd">class</span> <span class="nc">C</span> <span class="o">:</span> <span class="no">A</span><span class="o">()</span>
+    
+    <span class="n">object</span> <span class="no">D</span> <span class="o">:</span> <span class="no">A</span><span class="o">()</span>
+    <span class="o">{</span>
+         <span class="n">fun</span> <span class="nf">name</span><span class="o">()</span>
+         <span class="o">{</span>
+             <span class="n">println</span><span class="o">(</span><span class="s">"Object D"</span><span class="o">)</span>
+         <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="n">data</span> <span class="kd">class</span> <span class="nf">E</span><span class="o">(</span><span class="kt">var</span> <span class="nl">name:</span> <span class="nc">String</span><span class="o">)</span> <span class="o">:</span> <span class="no">A</span><span class="o">()</span>
+<span class="o">}</span>
+</pre></table></code></div></div><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="n">fun</span> <span class="nf">main</span><span class="o">(</span><span class="nl">args:</span> <span class="nc">Array</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;)</span> <span class="o">{</span>
+
+    <span class="n">val</span> <span class="n">e</span> <span class="o">=</span> <span class="no">A</span><span class="o">.</span><span class="na">E</span><span class="o">(</span><span class="s">"Anupam"</span><span class="o">)</span>
+    <span class="n">println</span><span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="c1">//prints E(name=Anupam)</span>
+
+    <span class="kt">var</span> <span class="n">d</span> <span class="o">=</span> <span class="no">A</span><span class="o">.</span><span class="na">D</span>
+    <span class="n">d</span><span class="o">.</span><span class="na">name</span><span class="o">()</span> <span class="c1">//prints Object D</span>
+<span class="o">}</span>
+</pre></table></code></div></div><h3 id="difference-between-enum-and-sealed-classes"><span class="me-2">Difference between enum and sealed classes</span><a href="#difference-between-enum-and-sealed-classes" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><code class="language-plaintext highlighter-rouge">Sealed class</code> cho phép ta tạo các thể hiện với nhiều kiểu khác nhau trong khi <code class="language-plaintext highlighter-rouge">enum</code> sử dụng cùng loại cho tất cả enum constants.</p><p>Với enum bạn không thể làm được như dưới đây :</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="kd">enum</span> <span class="kd">class</span> <span class="nf">Months</span><span class="o">(</span><span class="nl">string:</span> <span class="nc">String</span><span class="o">){</span>
+    <span class="nc">January</span><span class="o">(</span><span class="s">"Jan"</span><span class="o">),</span> <span class="nc">February</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span>      <span class="c1">// error</span>
+<span class="o">}</span>
+</pre></table></code></div></div><p>Bởi enum chỉ cho phép single type cho các hằng mà thôi. Đây là cách mà sealed class giải quyết vấn đề này :</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="n">sealed</span> <span class="kd">class</span> <span class="nc">Months</span> <span class="o">{</span>
+    <span class="kd">class</span> <span class="nf">January</span><span class="o">(</span><span class="kt">var</span> <span class="nl">shortHand:</span> <span class="nc">String</span><span class="o">)</span> <span class="o">:</span> <span class="nc">Months</span><span class="o">()</span>
+    <span class="kd">class</span> <span class="nf">February</span><span class="o">(</span><span class="kt">var</span> <span class="nl">number:</span> <span class="nc">Int</span><span class="o">)</span> <span class="o">:</span> <span class="nc">Months</span><span class="o">()</span>
+    <span class="kd">class</span> <span class="nf">March</span><span class="o">(</span><span class="kt">var</span> <span class="nl">shortHand:</span> <span class="nc">String</span><span class="o">,</span> <span class="kt">var</span> <span class="nl">number:</span> <span class="nc">Int</span><span class="o">)</span> <span class="o">:</span> <span class="nc">Months</span><span class="o">()</span>
+<span class="o">}</span>
+</pre></table></code></div></div><p>Giả sử bạn có một newfeed app, bạn có thể tạo các kiểu lớp khác nhau cho bài Post như Status, Image hay Video chẳng hạn.</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="n">sealed</span> <span class="kd">class</span> <span class="nc">Post</span>
+<span class="o">{</span>
+    <span class="kd">class</span> <span class="nf">Status</span><span class="o">(</span><span class="kt">var</span> <span class="nl">text:</span> <span class="nc">String</span><span class="o">)</span> <span class="o">:</span> <span class="nc">Post</span><span class="o">()</span>
+    <span class="kd">class</span> <span class="nf">Image</span><span class="o">(</span><span class="kt">var</span> <span class="nl">url:</span> <span class="nc">String</span><span class="o">,</span> <span class="kt">var</span> <span class="nl">caption:</span> <span class="nc">String</span><span class="o">)</span> <span class="o">:</span> <span class="nc">Post</span><span class="o">()</span>
+    <span class="kd">class</span> <span class="nf">Video</span><span class="o">(</span><span class="kt">var</span> <span class="nl">url:</span> <span class="nc">String</span><span class="o">,</span> <span class="kt">var</span> <span class="nl">timeDuration:</span> <span class="nc">Int</span><span class="o">,</span> <span class="kt">var</span> <span class="nl">encoding:</span> <span class="nc">String</span><span class="o">):</span> <span class="nc">Post</span><span class="o">()</span>
+<span class="o">}</span>
+</pre></table></code></div></div><h3 id="sealed-classes-and-when"><span class="me-2">Sealed classes and when</span><a href="#sealed-classes-and-when" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><code class="language-plaintext highlighter-rouge">Sealed class</code> thường được sử dụng với các câu lệnh <code class="language-plaintext highlighter-rouge">when</code> do mỗi lớp con và kiểu của nó biểu diễn một case. Hơn nữa, bởi sealed class giới hạn các kiểu nên khối <code class="language-plaintext highlighter-rouge">else</code> coi như bỏ.</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="n">sealed</span> <span class="kd">class</span> <span class="nc">Shape</span> <span class="o">{</span>
+    <span class="kd">class</span> <span class="nf">Circle</span><span class="o">(</span><span class="kt">var</span> <span class="nl">radius:</span> <span class="nc">Float</span><span class="o">):</span> <span class="nc">Shape</span><span class="o">()</span>
+    <span class="kd">class</span> <span class="nf">Square</span><span class="o">(</span><span class="kt">var</span> <span class="nl">length:</span> <span class="nc">Int</span><span class="o">):</span> <span class="nc">Shape</span><span class="o">()</span>
+    <span class="kd">class</span> <span class="nf">Rectangle</span><span class="o">(</span><span class="kt">var</span> <span class="nl">length:</span> <span class="nc">Int</span><span class="o">,</span> <span class="kt">var</span> <span class="nl">breadth:</span> <span class="nc">Int</span><span class="o">):</span> <span class="nc">Shape</span><span class="o">()</span>
+<span class="o">}</span>
+
+<span class="n">fun</span> <span class="nf">eval</span><span class="o">(</span><span class="nl">e:</span> <span class="nc">Shape</span><span class="o">)</span> <span class="o">=</span>
+        <span class="n">when</span> <span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">is</span> <span class="nc">Shape</span><span class="o">.</span><span class="na">Circle</span> <span class="o">-&gt;</span> <span class="n">println</span><span class="o">(</span><span class="s">"Circle area is ${3.14*e.radius*e.radius}"</span><span class="o">)</span>
+            <span class="n">is</span> <span class="nc">Shape</span><span class="o">.</span><span class="na">Square</span> <span class="o">-&gt;</span> <span class="n">println</span><span class="o">(</span><span class="s">"Square area is ${e.length*e.length}"</span><span class="o">)</span>
+            <span class="n">is</span> <span class="nc">Shape</span><span class="o">.</span><span class="na">Rectangle</span> <span class="o">-&gt;</span> <span class="n">println</span><span class="o">(</span><span class="s">"Rectagle area is ${e.length*e.breadth}"</span><span class="o">)</span>
+        <span class="o">}</span>
+</pre></table></code></div></div><p>Cùng thử tính toán với hàm <code class="language-plaintext highlighter-rouge">eval</code> xem :</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="n">fun</span> <span class="nf">main</span><span class="o">(</span><span class="nl">args:</span> <span class="nc">Array</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;)</span> <span class="o">{</span>
+
+    <span class="kt">var</span> <span class="n">circle</span> <span class="o">=</span> <span class="nc">Shape</span><span class="o">.</span><span class="na">Circle</span><span class="o">(</span><span class="mf">4.5f</span><span class="o">)</span>
+    <span class="kt">var</span> <span class="n">square</span> <span class="o">=</span> <span class="nc">Shape</span><span class="o">.</span><span class="na">Square</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+    <span class="kt">var</span> <span class="n">rectangle</span> <span class="o">=</span> <span class="nc">Shape</span><span class="o">.</span><span class="na">Rectangle</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">)</span>
+
+    <span class="n">eval</span><span class="o">(</span><span class="n">circle</span><span class="o">)</span>       <span class="c1">//Circle area is 63.585</span>
+    <span class="n">eval</span><span class="o">(</span><span class="n">square</span><span class="o">)</span>       <span class="c1">//Square area is 16</span>
+    <span class="n">eval</span><span class="o">(</span><span class="n">rectangle</span><span class="o">)</span>    <span class="c1">//Rectangle area is 20</span>
+    <span class="c1">//eval(x) //compile-time error.</span>
+
+<span class="o">}</span>
+</pre></table></code></div></div><p><strong>Note</strong> : Modifier <code class="language-plaintext highlighter-rouge">is</code> kiểm tra nếu class đó thuộc một trong các kiểu đã cho và chỉ yêu cầu cho các class. Với các objects thì sao ?</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre>
+<span class="n">sealed</span> <span class="kd">class</span> <span class="nc">Shape</span><span class="o">{</span>
+    <span class="kd">class</span> <span class="nf">Circle</span><span class="o">(</span><span class="kt">var</span> <span class="nl">radius:</span> <span class="nc">Float</span><span class="o">):</span> <span class="nc">Shape</span><span class="o">()</span>
+    <span class="kd">class</span> <span class="nf">Square</span><span class="o">(</span><span class="kt">var</span> <span class="nl">length:</span> <span class="nc">Int</span><span class="o">):</span> <span class="nc">Shape</span><span class="o">()</span>
+    <span class="n">object</span> <span class="nl">Rectangle:</span> <span class="nc">Shape</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="kt">var</span> <span class="nl">length:</span> <span class="nc">Int</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="kt">var</span> <span class="n">breadth</span> <span class="o">:</span> <span class="nc">Int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">fun</span> <span class="nf">eval</span><span class="o">(</span><span class="nl">e:</span> <span class="nc">Shape</span><span class="o">)</span> <span class="o">=</span>
+        <span class="n">when</span> <span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">is</span> <span class="nc">Shape</span><span class="o">.</span><span class="na">Circle</span> <span class="o">-&gt;</span> <span class="n">println</span><span class="o">(</span><span class="s">"Circle area is ${3.14*e.radius*e.radius}"</span><span class="o">)</span>
+            <span class="n">is</span> <span class="nc">Shape</span><span class="o">.</span><span class="na">Square</span> <span class="o">-&gt;</span> <span class="n">println</span><span class="o">(</span><span class="s">"Square area is ${e.length*e.length}"</span><span class="o">)</span>
+            <span class="nc">Shape</span><span class="o">.</span><span class="na">Rectangle</span> <span class="o">-&gt;</span> <span class="n">println</span><span class="o">(</span><span class="s">"Rectangle area is ${Shape.Rectangle.length*Shape.Rectangle.breadth}"</span><span class="o">)</span>
+        <span class="o">}</span>
+</pre></table></code></div></div><h3 id="conclusion"><span class="me-2">Conclusion</span><a href="#conclusion" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Hi vọng bài viết có thể giúp các bạn hiểu rõ hơn về sealed class và khi nào thì sử dụng nó một cách hợp lý. Cảm ơn các bạn đã đọc bài viết. Happy coding ^^</p><h3 id="references"><span class="me-2">References</span><a href="#references" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ol><li><a href="https://kotlinlang.org/docs/reference/sealed-classes.html">Kotlin Docs</a><li><a href="https://www.journaldev.com/18719/kotlin-sealed-class#difference-between-enum-and-sealed-classes">Kotlin Sealed Class</a></ol></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw me-1"></i> <a href="/categories/android/">Android</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw me-1"></i> <a href="/tags/android/" class="post-tag no-text-decoration" >android</a> <a href="/tags/kotlin/" class="post-tag no-text-decoration" >kotlin</a></div><div class=" post-tail-bottom d-flex justify-content-between align-items-center mt-5 pb-2 " ><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper d-flex align-items-center"> <span class="share-label text-muted">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=[Android]%20Kotlin%20Sealed%20Class%20-%20Hades&url=https%3A%2F%2Fhadesptit.github.io%2Fposts%2Fkotlin-sealed-class%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=[Android]%20Kotlin%20Sealed%20Class%20-%20Hades&u=https%3A%2F%2Fhadesptit.github.io%2Fposts%2Fkotlin-sealed-class%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://telegram.me/share?text=[Android]%20Kotlin%20Sealed%20Class%20-%20Hades&url=https%3A%2F%2Fhadesptit.github.io%2Fposts%2Fkotlin-sealed-class%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fhadesptit.github.io%2Fposts%2Fkotlin-sealed-class%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Linkedin" aria-label="Linkedin"> <i class="fa-fw fab fa-linkedin"></i> </a> <button id="copy-link" aria-label="Copy link" class="btn small" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy link" data-title-succeed="Link copied successfully!" > <i class="fa-fw fas fa-link pe-none fs-6"></i> </button> </span></div></div></div></article></main><aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted"><div class="access"><section id="access-lastmod"><h2 class="panel-heading">Recent Update</h2><ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2"><li class="text-truncate lh-lg"> <a href="/posts/flutter-338/">[Flutter] Flutter 3.38 & Dart 3.10 có gì mới ?</a><li class="text-truncate lh-lg"> <a href="/posts/flutter-33/">[Flutter] Flutter 3.3 có gì mới ?</a><li class="text-truncate lh-lg"> <a href="/posts/what-news-in-flutter3/">[Flutter] Flutter 3.0 có gì mới ?</a><li class="text-truncate lh-lg"> <a href="/posts/flutter-2.8/">[Flutter] Flutter 2.8 có gì mới ?</a><li class="text-truncate lh-lg"> <a href="/posts/shrinkwrap-vs-slivers/">[Flutter] ShrinkWrap vs Slivers | Decoding Flutter</a></ul></section><section><h2 class="panel-heading">Trending Tags</h2><div class="d-flex flex-wrap mt-3 mb-1 me-3"> <a class="post-tag btn btn-outline-primary" href="/tags/android/">android</a> <a class="post-tag btn btn-outline-primary" href="/tags/flutter/">flutter</a> <a class="post-tag btn btn-outline-primary" href="/tags/dart/">dart</a> <a class="post-tag btn btn-outline-primary" href="/tags/rxjava/">rxjava</a> <a class="post-tag btn btn-outline-primary" href="/tags/kotlin/">kotlin</a> <a class="post-tag btn btn-outline-primary" href="/tags/new/">new</a> <a class="post-tag btn btn-outline-primary" href="/tags/performance/">performance</a> <a class="post-tag btn btn-outline-primary" href="/tags/android-studio/">android studio</a> <a class="post-tag btn btn-outline-primary" href="/tags/as/">as</a> <a class="post-tag btn btn-outline-primary" href="/tags/cicd/">cicd</a></div></section></div><div class="toc-border-cover z-3"></div><section id="toc-wrapper" class="invisible position-sticky ps-0 pe-4 pb-4"><h2 class="panel-heading ps-3 pb-2 mb-0">Contents</h2><nav id="toc"></nav></section></aside></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4"><aside id="related-posts" aria-labelledby="related-label"><h3 class="mb-4" id="related-label">Further Reading</h3><nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4"><article class="col"> <a href="/posts/android-clean-architecture/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1580566503" data-df="ll" > Feb 1, 2020 </time><h4 class="pt-0 my-2">[Android] Clean architecture</h4><div class="text-muted"><p>Giới thiệu Việc xây dựng 1 kiến trúc nền tốt thật sự quan trọng cho ứng dụng để scale lên một cách đơn giản. Trước đây thì mình cực kì không thích thằng clean này đơn giản vì nó phải code nhiều qu...</p></div></div></a></article><article class="col"> <a href="/posts/rxjava-start/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1562422503" data-df="ll" > Jul 6, 2019 </time><h4 class="pt-0 my-2">[RxJava] Khái niệm</h4><div class="text-muted"><p>Giới thiệu Khi tôi mới học Android, ai đó đã nói với tôi rằng “Nếu bạn muốn học thứ gì khó khó, hãy học RxJava”. Trong series này, tôi sẽ cùng các bạn tìm hiểu nó từ những điều đơn giản nhất nhé. ...</p></div></div></a></article><article class="col"> <a href="/posts/android-paging-library/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1558361703" data-df="ll" > May 20, 2019 </time><h4 class="pt-0 my-2">[Android] Architecture Components : Paging Library</h4><div class="text-muted"><p>Introduction Hiện nay việc tải và hiển thị dữ liệu dưới dạng danh sách rất phổ biến và hầu như ứng dụng nào cũng có. Với những tập dữ liệu đầu vào vừa và nhỏ ta thường tải xong sau đó mới hiển thị...</p></div></div></a></article></nav></aside><nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation"> <a href="/posts/kotlin-starndard-function/" class="btn btn-outline-primary" aria-label="Older" ><p>[Android] Kotlin standard functions: run-with-let-also-apply</p></a> <a href="/posts/databinding-basic/" class="btn btn-outline-primary" aria-label="Newer" ><p>[Android] DataBinding Basic</p></a></nav><footer aria-label="Site Info" class=" d-flex flex-column justify-content-center text-muted flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3 " ><p>© <time>2025</time> <a href="https://github.com/HadesPTIT">Hades</a>. <span data-bs-toggle="tooltip" data-bs-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author." >Some rights reserved.</span></p><p>Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a data-bs-toggle="tooltip" data-bs-placement="top" title="v7.4.1" href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener" >Chirpy</a> theme.</p></footer></div></div><div id="search-result-wrapper" class="d-flex justify-content-center d-none"><div class="col-11 content"><div id="search-hints"><section><h2 class="panel-heading">Trending Tags</h2><div class="d-flex flex-wrap mt-3 mb-1 me-3"> <a class="post-tag btn btn-outline-primary" href="/tags/android/">android</a> <a class="post-tag btn btn-outline-primary" href="/tags/flutter/">flutter</a> <a class="post-tag btn btn-outline-primary" href="/tags/dart/">dart</a> <a class="post-tag btn btn-outline-primary" href="/tags/rxjava/">rxjava</a> <a class="post-tag btn btn-outline-primary" href="/tags/kotlin/">kotlin</a> <a class="post-tag btn btn-outline-primary" href="/tags/new/">new</a> <a class="post-tag btn btn-outline-primary" href="/tags/performance/">performance</a> <a class="post-tag btn btn-outline-primary" href="/tags/android-studio/">android studio</a> <a class="post-tag btn btn-outline-primary" href="/tags/as/">as</a> <a class="post-tag btn btn-outline-primary" href="/tags/cicd/">cicd</a></div></section></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><aside aria-label="Scroll to Top"> <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow"> <i class="fas fa-angle-up"></i> </button></aside></div><div id="mask" class="d-none position-fixed w-100 h-100 z-1"></div><script> document.addEventListener('DOMContentLoaded', () => { SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<article class="px-1 px-sm-2 px-lg-4 px-xl-0"><header><h2><a href="{url}">{title}</a></h2><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div></header><p>{content}</p></article>', noResultsText: '<p class="mt-5">Oops! No results found.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); }); </script>

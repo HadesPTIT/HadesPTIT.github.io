@@ -1,0 +1,379 @@
+<!doctype html><html lang="en-US" data-mode="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover" ><meta name="generator" content="Jekyll v4.4.1" /><meta property="og:title" content="[Flutter] Effective Dart (Part II)" /><meta property="og:locale" content="en_US" /><meta name="description" content="Tiếp tục phần trước, hôm nay mình sẽ chia sẻ 2 chủ đề còn lại là Usage Guide và Design Guide." /><meta property="og:description" content="Tiếp tục phần trước, hôm nay mình sẽ chia sẻ 2 chủ đề còn lại là Usage Guide và Design Guide." /><link rel="canonical" href="https://hadesptit.github.io/posts/flutter-effective-dart-p2/" /><meta property="og:url" content="https://hadesptit.github.io/posts/flutter-effective-dart-p2/" /><meta property="og:site_name" content="Hades" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2020-12-26T14:15:03+00:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="[Flutter] Effective Dart (Part II)" /><meta name="twitter:site" content="@hades_pt" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-12-26T14:15:03+00:00","datePublished":"2020-12-26T14:15:03+00:00","description":"Tiếp tục phần trước, hôm nay mình sẽ chia sẻ 2 chủ đề còn lại là Usage Guide và Design Guide.","headline":"[Flutter] Effective Dart (Part II)","mainEntityOfPage":{"@type":"WebPage","@id":"https://hadesptit.github.io/posts/flutter-effective-dart-p2/"},"url":"https://hadesptit.github.io/posts/flutter-effective-dart-p2/"}</script><title>[Flutter] Effective Dart (Part II) | Hades</title><link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/svg+xml" href="/assets/img/favicons/favicon.svg"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.36.4/dist/tocbot.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css"> <script src="/assets/js/dist/theme.min.js"></script> <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.18/dayjs.min.js,npm/dayjs@1.11.18/locale/en.js,npm/dayjs@1.11.18/plugin/relativeTime.js,npm/dayjs@1.11.18/plugin/localizedFormat.js,npm/tocbot@4.36.4/dist/tocbot.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script><body><aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end"><header class="profile-wrapper"> <a href="/" id="avatar" class="rounded-circle"><img src="https://avatars.githubusercontent.com/u/20601191?s=400" width="112" height="112" alt="avatar" onerror="this.style.display='none'"></a> <a class="site-title d-block" href="/">Hades</a><p class="site-subtitle fst-italic mb-0">Chase excellence success will follow you</p></header><nav class="flex-column flex-grow-1 w-100 ps-0"><ul class="nav"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tags"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info"></i> <span>ABOUT</span> </a></ul></nav><div class="sidebar-bottom d-flex flex-wrap align-items-center w-100"> <a href="https://github.com/HadesPTIT" aria-label="github" target="_blank" rel="noopener noreferrer" > <i class="fab fa-github-alt"></i> </a> <a href="https://twitter.com/hades_pt" aria-label="twitter" target="_blank" rel="noopener noreferrer" > <i class="fab fa-twitter"></i> </a> <a href="javascript:location.href = 'mailto:' + ['Hphamptit','gmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a></div></aside><div id="main-wrapper" class="d-flex justify-content-center"><div class="container d-flex flex-column px-xxl-5"><header id="topbar-wrapper" class="flex-shrink-0" aria-label="Top Bar"><div id="topbar" class="d-flex align-items-center justify-content-between px-lg-3 h-100" ><nav id="breadcrumb" aria-label="Breadcrumb"> <span> <a href="/">Home</a> </span> <span>[Flutter] Effective Dart (Part II)</span></nav><button type="button" id="sidebar-trigger" class="btn btn-link" aria-label="Sidebar"> <i class="fas fa-bars fa-fw"></i> </button><div id="topbar-title"> Post</div><button type="button" id="search-trigger" class="btn btn-link" aria-label="Search"> <i class="fas fa-search fa-fw"></i> </button> <search id="search" class="align-items-center ms-3 ms-lg-0"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..." > </search> <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">Cancel</button></div></header><div class="row flex-grow-1"><main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4"><article class="px-1" data-toc="true"><header><h1 data-toc-skip>[Flutter] Effective Dart (Part II)</h1><div class="post-meta text-muted"> <span> Posted <time data-ts="1608992103" data-df="ll" data-bs-toggle="tooltip" data-bs-placement="bottom" > Dec 26, 2020 </time> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://github.com/HadesPTIT">Hades</a> </em> </span><div> <span class="readtime" data-bs-toggle="tooltip" data-bs-placement="bottom" title="1695 words" > <em>9 min</em> read</span></div></div></div></header><div id="toc-bar" class="d-flex align-items-center justify-content-between invisible"> <span class="label text-truncate">[Flutter] Effective Dart (Part II)</span> <button type="button" class="toc-trigger btn me-1"> <i class="fa-solid fa-list-ul fa-fw"></i> </button></div><button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm"> <span class="label ps-2 pe-1">Contents</span> <i class="fa-solid fa-angle-right fa-fw"></i> </button> <dialog id="toc-popup" class="p-0"><div class="header d-flex flex-row align-items-center justify-content-between"><div class="label text-truncate py-2 ms-4">[Flutter] Effective Dart (Part II)</div><button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75"> <i class="fas fa-close"></i> </button></div><div id="toc-popup-content" class="px-4 py-3 pb-4"></div></dialog><div class="content"><p>Tiếp tục phần trước, hôm nay mình sẽ chia sẻ 2 chủ đề còn lại là Usage Guide và Design Guide.</p><ul><li><p><a href="https://dart.dev/guides/language/effective-dart/usage">Usage Guide</a> – Làm cách nào để implement 1 đoạn mã sử dụng các statement hay expression hợp lý…</p><li><p><a href="https://dart.dev/guides/language/effective-dart/design">Design Guide</a> – Đây là phần nhỏ nhưng scope rộng nhất. Cách khai báo, thiết kế consistent, usable APIs</p></ul><h2 id="3-usage-guide"><span class="me-2">3. USAGE GUIDE</span><a href="#3-usage-guide" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Làm cách nào để implement 1 đoạn mã sử dụng các statement hay expression hợp lý…<br /></p><h3 id="311-do-use-collection-literals-when-possible"><span class="me-2">3.1.1 DO use collection literals when possible.</span><a href="#311-do-use-collection-literals-when-possible" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Dart có 3 kiểu collection chính : List, Map, Set. Nên khởi tạo như sau:</ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre>
+<span class="n">GOOD</span>
+<span class="kd">var</span> <span class="n">points</span> <span class="o">=</span> <span class="p">&lt;</span><span class="n">Point</span><span class="p">&gt;[];</span>
+<span class="kd">var</span> <span class="n">addresses</span> <span class="o">=</span> <span class="p">&lt;</span><span class="kt">String</span><span class="p">,</span> <span class="n">Address</span><span class="p">&gt;{};</span>
+<span class="kd">var</span> <span class="n">counts</span> <span class="o">=</span> <span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;{};</span>
+
+<span class="n">BAD</span>
+
+<span class="kd">var</span> <span class="n">points</span> <span class="o">=</span> <span class="kt">List</span><span class="p">&lt;</span><span class="n">Point</span><span class="p">&gt;();</span>
+<span class="kd">var</span> <span class="n">addresses</span> <span class="o">=</span> <span class="kt">Map</span><span class="p">&lt;</span><span class="kt">String</span><span class="p">,</span> <span class="n">Address</span><span class="p">&gt;();</span>
+<span class="kd">var</span> <span class="n">counts</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+</pre></table></code></div></div><h3 id="312-dont-use-listfrom-unless-you-intend-to-change-the-type-of-the-result"><span class="me-2">3.1.2 DON’T use List.from() unless you intend to change the type of the result.</span><a href="#312-dont-use-listfrom-unless-you-intend-to-change-the-type-of-the-result" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Không nên sử dụng List.from() trừ khi bạn muốn thay đổi kiểu của kết quả trả về.</ul><p>Ví dụ, có 1 iterable, có 2 cách để tạo ra 1 list mới chứa các phần tử tương tự</p><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre><td class="rouge-code"><pre><span class="kd">var</span> <span class="n">copy1</span> <span class="o">=</span> <span class="n">iterable</span><span class="o">.</span><span class="na">toList</span><span class="p">();</span>
+<span class="kd">var</span> <span class="n">copy2</span> <span class="o">=</span> <span class="kt">List</span><span class="o">.</span><span class="na">from</span><span class="p">(</span><span class="n">iterable</span><span class="p">);</span>
+<span class="o">~~</span>
+<span class="n">D</span><span class="err">ễ</span> <span class="n">th</span><span class="err">ấ</span><span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="err">á</span><span class="n">ch</span> <span class="n">copy1</span> <span class="n">ng</span><span class="err">ắ</span><span class="n">n</span> <span class="n">h</span><span class="err">ơ</span><span class="n">n</span><span class="p">.</span> <span class="n">v</span><span class="err">à</span> <span class="n">quan</span> <span class="n">tr</span><span class="err">ọ</span><span class="n">ng</span> <span class="n">h</span><span class="err">ơ</span><span class="n">n</span> <span class="n">l</span><span class="err">à</span> <span class="n">c</span><span class="err">á</span><span class="n">ch</span> <span class="mi">1</span> <span class="n">gi</span><span class="err">ữ</span> <span class="n">l</span><span class="err">ạ</span><span class="n">i</span> <span class="err">đượ</span><span class="n">c</span> <span class="n">ki</span><span class="err">ể</span><span class="n">u</span> <span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="n">c</span><span class="err">ủ</span><span class="n">a</span> <span class="err">đố</span><span class="n">i</span> <span class="n">t</span><span class="err">ượ</span><span class="n">ng</span> <span class="n">g</span><span class="err">ố</span><span class="n">c</span>
+
+<span class="o">~~~</span><span class="n">dart</span>
+<span class="c1">// Creates a List&lt;int&gt;:</span>
+<span class="kd">var</span> <span class="n">iterable</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+
+<span class="c1">// Prints "List&lt;int&gt;":</span>
+<span class="n">print</span><span class="p">(</span><span class="n">iterable</span><span class="o">.</span><span class="na">toList</span><span class="p">()</span><span class="o">.</span><span class="na">runtimeType</span><span class="p">);</span>
+
+<span class="c1">/// WITH</span>
+
+<span class="c1">// Creates a List&lt;int&gt;:</span>
+<span class="kd">var</span> <span class="n">iterable</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+
+<span class="c1">// Prints "List&lt;dynamic&gt;":</span>
+<span class="n">print</span><span class="p">(</span><span class="kt">List</span><span class="o">.</span><span class="na">from</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span><span class="o">.</span><span class="na">runtimeType</span><span class="p">);</span>
+</pre></table></code></div></div><p>Còn nếu muốn thay đổi kiểu, sử dụng List.from() sẽ hợp lý với trường hợp sau:</p><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="kd">var</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span> <span class="c1">// List&lt;num&gt;.</span>
+<span class="n">numbers</span><span class="o">.</span><span class="na">removeAt</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// Now it only contains integers.</span>
+<span class="kd">var</span> <span class="n">ints</span> <span class="o">=</span> <span class="kt">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span><span class="o">.</span><span class="na">from</span><span class="p">(</span><span class="n">numbers</span><span class="p">);</span>
+</pre></table></code></div></div><h3 id="313-do-use-wheretype-to-filter-a-collection-by-type"><span class="me-2">3.1.3 DO use whereType() to filter a collection by type.</span><a href="#313-do-use-wheretype-to-filter-a-collection-by-type" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Sử dụng whereType để lọc collection theo kiểu xác định</ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="n">GOOD</span>
+<span class="kd">var</span> <span class="n">objects</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s">'a'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">'b'</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="kd">var</span> <span class="n">ints</span> <span class="o">=</span> <span class="n">objects</span><span class="o">.</span><span class="na">whereType</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+
+<span class="n">BAD</span>
+<span class="kd">var</span> <span class="n">objects</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s">'a'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">'b'</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="kd">var</span> <span class="n">ints</span> <span class="o">=</span> <span class="n">objects</span><span class="o">.</span><span class="na">where</span><span class="p">((</span><span class="n">e</span><span class="p">)</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">e</span> <span class="k">is</span> <span class="kt">int</span><span class="p">);</span>
+</pre></table></code></div></div><h3 id="321-prefer-function-declarations-over-variables"><span class="me-2">3.2.1 Prefer function declarations over variables</span><a href="#321-prefer-function-declarations-over-variables" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Trong Dart, thậm chí các functions cũng là object. Bên dưới là 1 số cách sử dụng liên quan đến function<li>Dart cho phép khai báo local functions.</ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre>
+<span class="n">GOOD</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">localFunction</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">BAD</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="n">localFunction</span> <span class="o">=</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</pre></table></code></div></div><h3 id="322-do-remove-unnecessary-lambdas"><span class="me-2">3.2.2 DO remove unnecessary lambdas</span><a href="#322-do-remove-unnecessary-lambdas" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Nếu function invoke method với cùng argument truyền vào thì không cần wrap nó lại với lambdas</ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="n">GOOD</span>
+<span class="n">names</span><span class="o">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">print</span><span class="p">);</span>
+
+<span class="n">BAD</span>
+<span class="n">names</span><span class="o">.</span><span class="na">forEach</span><span class="p">((</span><span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">print</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></table></code></div></div><h3 id="323-do-use--to-separate-a-named-parameter-from-its-default-value"><span class="me-2">3.2.3 DO use = to separate a named parameter from its default value.</span><a href="#323-do-use--to-separate-a-named-parameter-from-its-default-value" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Dart hỗ trợ gán default value bằng cả 2 cách “=” và “:”. = Để nhất quán, sử dụng “=” để set default value cho named params thay vì “:”</ul><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>void insert(Object item, {int at = 0}) { ... }
+</pre></table></code></div></div><h3 id="331-do-follow-a-consistent-rule-for-var-and-final-on-local-variables"><span class="me-2">3.3.1 DO follow a consistent rule for var and final on local variables.</span><a href="#331-do-follow-a-consistent-rule-for-var-and-final-on-local-variables" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p>Tuân theo các quy tắc sau khi sử dụng var và final</p><li><p>Sử dụng final cho biến không được assign lại giá trị và var cho biến được assign lại giá trị</p></ul><h3 id="332-avoid-storing-what-you-can-calculate"><span class="me-2">3.3.2 AVOID storing what you can calculate.</span><a href="#332-avoid-storing-what-you-can-calculate" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Không lưu lại các giá trị có thể tính toán.</ul><p>Bên dưới là 1 ví dụ về sai lầm này…</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre>BAD
+class Circle {
+  double radius;
+  double area;
+  double circumference;
+
+  Circle(double radius)
+      : radius = radius,
+        area = pi * radius * radius,
+        circumference = pi * 2.0 * radius;
+}
+</pre></table></code></div></div><ul><li>Thứ nhất, tốn tài nguyên, memory.<li>Thứ hai, area và circumference là 2 giá trị có thể tự tính toán được mà không cần phải lưu lại.<li>Thứ ba, radius trong trường hợp này là mutable, nếu thay đổi giá trị thì area và cir vẫn giữ giá trị cũ =&gt; sai</ul><p>Vì vậy, hãy xây dựng lại theo format sau :</p><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="kd">class</span> <span class="nc">Circle</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
+
+  <span class="n">Circle</span><span class="p">(</span><span class="k">this</span><span class="o">.</span><span class="na">radius</span><span class="p">);</span>
+
+  <span class="kt">double</span> <span class="kd">get</span> <span class="n">area</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="kd">get</span> <span class="n">circumference</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">pi</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li>Ngắn hơn, sử dụng ít bộ nhớ hơn và ít xảy ra lỗi hơn, không sợ việc mất đồng bộ dữ liệu vì chỉ có 1 source duy nhất.<li>Trong 1 số trường hợp, bạn có thể phải cache lại kết quả nếu việc get tính toán mất nhiều thời gian, nhưng chỉ nên làm nếu performance đang gặp vấn đề.</ul><h3 id="341-prefer-using-a-final-field-to-make-a-read-only-property"><span class="me-2">3.4.1 PREFER using a final field to make a read-only property.</span><a href="#341-prefer-using-a-final-field-to-make-a-read-only-property" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p>Để đảm bảo dữ liệu được wrap lại và được trích xuất đúng nơi, nên set final</p><li><p>Tất nhiên, nếu cần assign lại phạm vi internal, thì nên set private field và chỉ public getter.</p></ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="kd">class</span> <span class="nc">Box</span> <span class="p">{</span>
+  <span class="kd">final</span> <span class="n">contents</span> <span class="o">=</span> <span class="p">[];</span>
+
+  <span class="kt">double</span> <span class="n">_data</span><span class="p">;</span>
+
+  <span class="kt">double</span> <span class="kd">get</span> <span class="n">data</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">_data</span><span class="p">;</span>
+
+  <span class="kd">set</span> <span class="n">data</span><span class="p">(</span><span class="kt">double</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_data</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></table></code></div></div><h3 id="351-do-use-initializing-formals-when-possible"><span class="me-2">3.5.1 DO use initializing formals when possible.</span><a href="#351-do-use-initializing-formals-when-possible" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Nên init giá trị nếu có thể</ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="n">GOOD</span>
+<span class="kd">class</span> <span class="nc">Point</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+  <span class="n">Point</span><span class="p">(</span><span class="k">this</span><span class="o">.</span><span class="na">x</span><span class="p">,</span> <span class="k">this</span><span class="o">.</span><span class="na">y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">BAD</span>
+<span class="kd">class</span> <span class="nc">Point</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+  <span class="n">Point</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span>
+      <span class="o">:</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></table></code></div></div><p>=&gt; this.syntax trong constructor được gọi là “initializing formal” (khởi tạo chính thức)</p><h3 id="352-do-use--instead-of--for-empty-constructor-bodies"><span class="me-2">3.5.2 DO use ; instead of {} for empty constructor bodies.</span><a href="#352-do-use--instead-of--for-empty-constructor-bodies" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Dùng ; thay vì {} với constructor rỗng.</ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="n">GOOD</span>
+<span class="kd">class</span> <span class="nc">Point</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+  <span class="n">Point</span><span class="p">(</span><span class="k">this</span><span class="o">.</span><span class="na">x</span><span class="p">,</span> <span class="k">this</span><span class="o">.</span><span class="na">y</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">BAD</span>
+<span class="kd">class</span> <span class="nc">Point</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+  <span class="n">Point</span><span class="p">(</span><span class="k">this</span><span class="o">.</span><span class="na">x</span><span class="p">,</span> <span class="k">this</span><span class="o">.</span><span class="na">y</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></table></code></div></div><h3 id="353-dont-use-new"><span class="me-2">3.5.3 DON’T use new.</span><a href="#353-dont-use-new" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Từ Dart 2 trở đi, không cần sử dụng từ khoá “new”</ul><h3 id="361-avoid-catches-without-on-clauses"><span class="me-2">3.6.1 AVOID catches without on clauses.</span><a href="#361-avoid-catches-without-on-clauses" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Try/catch nên xác định loại error bằng “on” clauses.</ul><h2 id="4-design-guide"><span class="me-2">4. DESIGN GUIDE</span><a href="#4-design-guide" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Duới đây là 1 số hướng dẫn để viết code tốt hơn</p><ul><li>Sử dụng cùng một pattern cho những mục đích giống nhau trong suốt các phần code của dự án.<li>Việc quy ước này giúp việc đọc hiểu nhanh hơn, dễ tìm hơn</ul><h3 id="411-do-use-terms-consistently"><span class="me-2">4.1.1 DO use terms consistently.</span><a href="#411-do-use-terms-consistently" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="n">GOOD</span>
+<span class="n">pageCount</span>         <span class="c1">// A field.</span>
+<span class="n">updatePageCount</span><span class="p">()</span> <span class="c1">// Consistent with pageCount.</span>
+<span class="n">toSomething</span><span class="p">()</span>     <span class="c1">// Consistent with Iterable's toList().</span>
+<span class="n">asSomething</span><span class="p">()</span>     <span class="c1">// Consistent with List's asMap().</span>
+<span class="n">Point</span>             <span class="c1">// A familiar concept.</span>
+</pre></table></code></div></div><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="n">BAD</span>
+<span class="nf">renumberPages</span><span class="p">()</span>      <span class="c1">// Confusingly different from pageCount.</span>
+<span class="n">convertToSomething</span><span class="p">()</span> <span class="c1">// Inconsistent with toX() precedent.</span>
+<span class="n">wrappedAsSomething</span><span class="p">()</span> <span class="c1">// Inconsistent with asX() precedent.</span>
+<span class="n">Cartesian</span>       
+</pre></table></code></div></div><h3 id="412-avoid-abbreviations"><span class="me-2">4.1.2 AVOID abbreviations.</span><a href="#412-avoid-abbreviations" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Tránh viết tắt. Trừ khi những từ viết tắt phổ biến hơn full.</ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre><span class="n">GOOD</span>
+<span class="n">pageCount</span>
+<span class="n">buildRectangles</span>
+<span class="n">IOStream</span>
+<span class="n">HttpRequest</span>
+
+<span class="n">BAD</span>
+<span class="n">numPages</span>    <span class="c1">// "Num" is an abbreviation of "number (of)".</span>
+<span class="n">buildRects</span>
+<span class="n">InputOutputStream</span>
+<span class="n">HypertextTransferProtocolRequest</span>
+</pre></table></code></div></div><h3 id="413-prefer-a-non-imperative-verb-phrase-for-a-boolean-property-or-variable"><span class="me-2">4.1.3 PREFER a non-imperative verb phrase for a boolean property or variable.</span><a href="#413-prefer-a-non-imperative-verb-phrase-for-a-boolean-property-or-variable" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Sử dụng các cụm động từ cho thuộc tính hoặc biến kiểu boolean</ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre><span class="n">GOOD</span>
+<span class="n">isEmpty</span>
+<span class="n">hasElements</span>
+<span class="n">hasShownPopup</span>
+<span class="n">canClose</span>
+<span class="n">canShowPopup</span>
+<span class="n">shouldConsume</span>
+<span class="n">wasShown</span>
+<span class="n">willFire</span>
+
+<span class="n">BAD</span>
+<span class="n">empty</span>         <span class="c1">// Adjective or verb?</span>
+<span class="n">withElements</span>  <span class="c1">// Sounds like it might hold elements.</span>
+<span class="n">closeable</span>     <span class="c1">// Sounds like an interface.</span>
+              <span class="c1">// "canClose" reads better as a sentence.</span>
+<span class="n">closingWindow</span> <span class="c1">// Returns a bool or a window?</span>
+<span class="n">showPopup</span>     <span class="c1">// Sounds like it shows the popup.</span>
+</pre></table></code></div></div><h3 id="414-consider-omitting-the-verb-for-a-named-boolean-parameter"><span class="me-2">4.1.4 CONSIDER omitting the verb for a named boolean parameter.</span><a href="#414-consider-omitting-the-verb-for-a-named-boolean-parameter" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Cân nhắc việc bỏ qua động từ cho 1 số named param kiểu boolean</ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="n">GOOD</span>
+<span class="n">Isolate</span><span class="o">.</span><span class="na">spawn</span><span class="p">(</span><span class="n">entryPoint</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="nl">paused:</span> <span class="kc">false</span><span class="p">);</span>
+<span class="kd">var</span> <span class="n">copy</span> <span class="o">=</span> <span class="kt">List</span><span class="o">.</span><span class="na">from</span><span class="p">(</span><span class="n">elements</span><span class="p">,</span> <span class="nl">growable:</span> <span class="kc">true</span><span class="p">);</span>
+<span class="kd">var</span> <span class="n">regExp</span> <span class="o">=</span> <span class="n">RegExp</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="nl">caseSensitive:</span> <span class="kc">false</span><span class="p">);</span>
+</pre></table></code></div></div><h3 id="415-prefer-the-positive-name-for-a-boolean-property-or-variable"><span class="me-2">4.1.5 PREFER the “positive” name for a boolean property or variable.</span><a href="#415-prefer-the-positive-name-for-a-boolean-property-or-variable" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Ưu tiên đặt tên kiểu tích cực với boolean</ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="n">GOOD</span>
+<span class="nf">if</span> <span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="na">isConnected</span> <span class="o">&amp;&amp;</span> <span class="n">database</span><span class="o">.</span><span class="na">hasData</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">socket</span><span class="o">.</span><span class="na">write</span><span class="p">(</span><span class="n">database</span><span class="o">.</span><span class="na">read</span><span class="p">());</span>
+<span class="p">}</span>
+<span class="n">BAD</span>
+<span class="nf">if</span> <span class="p">(</span><span class="o">!</span><span class="n">socket</span><span class="o">.</span><span class="na">isDisconnected</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">database</span><span class="o">.</span><span class="na">isEmpty</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">socket</span><span class="o">.</span><span class="na">write</span><span class="p">(</span><span class="n">database</span><span class="o">.</span><span class="na">read</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></table></code></div></div><h3 id="416-do-follow-existing-mnemonic-conventions-when-naming-type-parameters"><span class="me-2">4.1.6 DO follow existing mnemonic conventions when naming type parameters.</span><a href="#416-do-follow-existing-mnemonic-conventions-when-naming-type-parameters" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p>Nên tuân theo các quy ước sau khi đặt tên cho các tham số kiểu</p><li><p>Sử dụng E cho các phần tử trong collection ~~~dart GOOD</p></ul><p>class IterableBase<E> {} class List<E> {} class HashSet<E> {} class RedBlackTree<E> {}</E></E></E></E></p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>* Sử dụng K và V ( key &amp; values) cho kiểu tập hợp
+~~~dart
+class Map&lt;K, V&gt; {}
+class Multimap&lt;K, V&gt; {}
+class MapEntry&lt;K, V&gt; {}
+</pre></table></code></div></div><ul><li>Sử dụng R cho kiểu được sử dụng là giá trị trả về của phương thức</ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">ExpressionVisitor</span><span class="p">&lt;</span><span class="n">R</span><span class="p">&gt;</span> <span class="p">{</span>
+  <span class="n">R</span> <span class="n">visitBinary</span><span class="p">(</span><span class="n">BinaryExpression</span> <span class="n">node</span><span class="p">);</span>
+  <span class="n">R</span> <span class="n">visitLiteral</span><span class="p">(</span><span class="n">LiteralExpression</span> <span class="n">node</span><span class="p">);</span>
+  <span class="n">R</span> <span class="n">visitUnary</span><span class="p">(</span><span class="n">UnaryExpression</span> <span class="n">node</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></table></code></div></div><h3 id="421-avoid-defining-a-one-member-abstract-class-when-a-simple-function-will-do"><span class="me-2">4.2.1 AVOID defining a one-member abstract class when a simple function will do.</span><a href="#421-avoid-defining-a-one-member-abstract-class-when-a-simple-function-will-do" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Dart là một ngôn ngữ hướng đối tượng thuần tuý trong đó các đối tượng đều là instance của một lớp nào đó.<li>Nhưng dart không yêu cầu tất cả code phải được định nghĩa bên trong class. Bạn có thể định nghĩa top-level variables, constants, functions…<li>Tránh define abstract class với 1 member bên trong</ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="n">GOOD</span>
+<span class="kd">typedef</span> <span class="n">Predicate</span><span class="p">&lt;</span><span class="n">E</span><span class="p">&gt;</span> <span class="o">=</span> <span class="kt">bool</span> <span class="kt">Function</span><span class="p">(</span><span class="n">E</span> <span class="n">element</span><span class="p">);</span>
+
+<span class="n">BAD</span>
+<span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Predicate</span><span class="p">&lt;</span><span class="n">E</span><span class="p">&gt;</span> <span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">test</span><span class="p">(</span><span class="n">E</span> <span class="n">element</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></table></code></div></div><h3 id="431-consider-making-your-constructor-const-if-the-class-supports-it"><span class="me-2">4.3.1 CONSIDER making your constructor const if the class supports it.</span><a href="#431-consider-making-your-constructor-const-if-the-class-supports-it" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p>Cân nhắc việc đưa constructor const nếu có thể</p><li><p>Nếu bạn xây dựng 1 class mà tất cả các field là “final”, và constructor không làm gì ngoài việc khởi tạo giá trị, bạn nên để constructor const, điều này cho phép tạo các instance của class ở những nơi bắt buộc phải có yêu cầu const như : bên trong const lớn hơn, switch case, default params values…</p></ul><h3 id="441-dont-specify-a-return-type-for-a-setter"><span class="me-2">4.4.1 DON’T specify a return type for a setter.</span><a href="#441-dont-specify-a-return-type-for-a-setter" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Setter luôn trả về kiểu void trong dart, vì vậy thêm vào rất vô nghĩa</ul><div class="language-dart highlighter-rouge"><div class="code-header"> <span data-label-text="Dart"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="n">GOOD</span>
+<span class="kd">set</span> <span class="nf">foo</span><span class="p">(</span><span class="n">Foo</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="n">BAD</span>
+<span class="kt">void</span> <span class="kd">set</span> <span class="nf">foo</span><span class="p">(</span><span class="n">Foo</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></table></code></div></div></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw me-1"></i> <a href="/categories/flutter/">Flutter</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw me-1"></i> <a href="/tags/flutter/" class="post-tag no-text-decoration" >flutter</a> <a href="/tags/dart/" class="post-tag no-text-decoration" >dart</a></div><div class=" post-tail-bottom d-flex justify-content-between align-items-center mt-5 pb-2 " ><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper d-flex align-items-center"> <span class="share-label text-muted">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=[Flutter]%20Effective%20Dart%20(Part%20II)%20-%20Hades&url=https%3A%2F%2Fhadesptit.github.io%2Fposts%2Fflutter-effective-dart-p2%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=[Flutter]%20Effective%20Dart%20(Part%20II)%20-%20Hades&u=https%3A%2F%2Fhadesptit.github.io%2Fposts%2Fflutter-effective-dart-p2%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://telegram.me/share?text=[Flutter]%20Effective%20Dart%20(Part%20II)%20-%20Hades&url=https%3A%2F%2Fhadesptit.github.io%2Fposts%2Fflutter-effective-dart-p2%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fhadesptit.github.io%2Fposts%2Fflutter-effective-dart-p2%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Linkedin" aria-label="Linkedin"> <i class="fa-fw fab fa-linkedin"></i> </a> <button id="copy-link" aria-label="Copy link" class="btn small" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy link" data-title-succeed="Link copied successfully!" > <i class="fa-fw fas fa-link pe-none fs-6"></i> </button> </span></div></div></div></article></main><aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted"><div class="access"><section id="access-lastmod"><h2 class="panel-heading">Recent Update</h2><ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2"><li class="text-truncate lh-lg"> <a href="/posts/flutter-338/">[Flutter] Flutter 3.38 & Dart 3.10 có gì mới ?</a><li class="text-truncate lh-lg"> <a href="/posts/flutter-33/">[Flutter] Flutter 3.3 có gì mới ?</a><li class="text-truncate lh-lg"> <a href="/posts/what-news-in-flutter3/">[Flutter] Flutter 3.0 có gì mới ?</a><li class="text-truncate lh-lg"> <a href="/posts/flutter-2.8/">[Flutter] Flutter 2.8 có gì mới ?</a><li class="text-truncate lh-lg"> <a href="/posts/shrinkwrap-vs-slivers/">[Flutter] ShrinkWrap vs Slivers | Decoding Flutter</a></ul></section><section><h2 class="panel-heading">Trending Tags</h2><div class="d-flex flex-wrap mt-3 mb-1 me-3"> <a class="post-tag btn btn-outline-primary" href="/tags/android/">android</a> <a class="post-tag btn btn-outline-primary" href="/tags/flutter/">flutter</a> <a class="post-tag btn btn-outline-primary" href="/tags/dart/">dart</a> <a class="post-tag btn btn-outline-primary" href="/tags/rxjava/">rxjava</a> <a class="post-tag btn btn-outline-primary" href="/tags/kotlin/">kotlin</a> <a class="post-tag btn btn-outline-primary" href="/tags/new/">new</a> <a class="post-tag btn btn-outline-primary" href="/tags/performance/">performance</a> <a class="post-tag btn btn-outline-primary" href="/tags/android-studio/">android studio</a> <a class="post-tag btn btn-outline-primary" href="/tags/as/">as</a> <a class="post-tag btn btn-outline-primary" href="/tags/cicd/">cicd</a></div></section></div><div class="toc-border-cover z-3"></div><section id="toc-wrapper" class="invisible position-sticky ps-0 pe-4 pb-4"><h2 class="panel-heading ps-3 pb-2 mb-0">Contents</h2><nav id="toc"></nav></section></aside></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4"><aside id="related-posts" aria-labelledby="related-label"><h3 class="mb-4" id="related-label">Further Reading</h3><nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4"><article class="col"> <a href="/posts/what-news-in-flutter3/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1654092903" data-df="ll" > Jun 1, 2022 </time><h4 class="pt-0 my-2">[Flutter] Flutter 3.0 có gì mới ?</h4><div class="text-muted"><p>Giới thiệu 11/05/2022, Google I/O chính thức phát hành phiên bản Flutter 3 với rất nhiều cải tiến đáng kể. Đặc biệt dành cho các thiết bị sử dụng window. Trong bài viết này mình sẽ cùng tìm hiểu x...</p></div></div></a></article><article class="col"> <a href="/posts/shrinkwrap-vs-slivers/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1637417703" data-df="ll" > Nov 20, 2021 </time><h4 class="pt-0 my-2">[Flutter] ShrinkWrap vs Slivers | Decoding Flutter</h4><div class="text-muted"><p>Introduction Một trong những widget cơ bản mà các developer sử dụng thường xuyên đó là ListView. ListView rất dễ dùng, nhưng để tối ưu nó thì không hẳn ai cũng biết. Trong bài viết này, mình sẽ c...</p></div></div></a></article><article class="col"> <a href="/posts/flutter-2.0.5-news/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1631974503" data-df="ll" > Sep 18, 2021 </time><h4 class="pt-0 my-2">[Flutter] Flutter 2.5 có gì mới</h4><div class="text-muted"><p>Giới thiệu Google, gã khổng lồ tìm kiếm mới đây vừa tung ra phiên bản release 2.5 với 4600 closed issues và 3932 merged PRs. Đi kèm với nó, Dart 2.14 cũng được release cùng thời điểm. Trong bài vi...</p></div></div></a></article></nav></aside><nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation"> <a href="/posts/flutter-effective-dart/" class="btn btn-outline-primary" aria-label="Older" ><p>[Flutter] Effective Dart (Part I)</p></a> <a href="/posts/how-nulll-safety-help-me/" class="btn btn-outline-primary" aria-label="Newer" ><p>[Flutter] Dart’s null safety đã tối ưu ứng dụng của tôi như nào ?</p></a></nav><footer aria-label="Site Info" class=" d-flex flex-column justify-content-center text-muted flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3 " ><p>© <time>2025</time> <a href="https://github.com/HadesPTIT">Hades</a>. <span data-bs-toggle="tooltip" data-bs-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author." >Some rights reserved.</span></p><p>Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a data-bs-toggle="tooltip" data-bs-placement="top" title="v7.4.1" href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener" >Chirpy</a> theme.</p></footer></div></div><div id="search-result-wrapper" class="d-flex justify-content-center d-none"><div class="col-11 content"><div id="search-hints"><section><h2 class="panel-heading">Trending Tags</h2><div class="d-flex flex-wrap mt-3 mb-1 me-3"> <a class="post-tag btn btn-outline-primary" href="/tags/android/">android</a> <a class="post-tag btn btn-outline-primary" href="/tags/flutter/">flutter</a> <a class="post-tag btn btn-outline-primary" href="/tags/dart/">dart</a> <a class="post-tag btn btn-outline-primary" href="/tags/rxjava/">rxjava</a> <a class="post-tag btn btn-outline-primary" href="/tags/kotlin/">kotlin</a> <a class="post-tag btn btn-outline-primary" href="/tags/new/">new</a> <a class="post-tag btn btn-outline-primary" href="/tags/performance/">performance</a> <a class="post-tag btn btn-outline-primary" href="/tags/android-studio/">android studio</a> <a class="post-tag btn btn-outline-primary" href="/tags/as/">as</a> <a class="post-tag btn btn-outline-primary" href="/tags/cicd/">cicd</a></div></section></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><aside aria-label="Scroll to Top"> <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow"> <i class="fas fa-angle-up"></i> </button></aside></div><div id="mask" class="d-none position-fixed w-100 h-100 z-1"></div><script> document.addEventListener('DOMContentLoaded', () => { SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<article class="px-1 px-sm-2 px-lg-4 px-xl-0"><header><h2><a href="{url}">{title}</a></h2><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div></header><p>{content}</p></article>', noResultsText: '<p class="mt-5">Oops! No results found.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); }); </script>
